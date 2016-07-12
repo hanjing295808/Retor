@@ -1,0 +1,758 @@
+Ctrl+T:查看继承结构
+
+Ctrl+shift+s:保存所有
+
+cmd ->echo %temp%
+
+
+
+//单字节读取标准格式
+		int b;
+		while((b=raf.read())!=-1){
+			System.out.println(b);
+		}
+		
+//批量读取标准格式
+		byte[] buf=new byte[4];
+		int n;
+		while((n=raf.read(buf))!=-1){
+			System.out.println(n+"个：\t"+Arrays.toString(buf));
+		}
+
+//
+	byte[] buffer = new byte[1024 * 8];
+			
+			int length;
+			while((length = fis.read(buffer)) != -1) {
+				fos.write(buffer, 0, length);
+			}
+		
+
+//BufferedReader读取行
+//inputment jsonText
+		InputStream is=conn.getInputStream();
+		BufferedReader br=new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb=new StringBuilder();
+		String line="";
+		while((line=br.readLine())!=null){
+			sb.append(line);
+		}
+		String jsonText=sb.toString();
+		
+
+002(00E0700DA145对话) 09:01:01
+【有时候一进入页面, EditText默认就会自动获取焦点。弹出输入法，体验不好，如何取消这个默认行为？】在其父控件下，添加如下的属性：
+android:focusable="true"; android:focusableInTouchMode="true"
+
+
+
+
+运算器：
+主要功能是对数据进行各种运算。这些运算除了常规的加、减、乘、除等基本的算术运算之外，还包括能进行“逻辑判断”的逻辑处理能力，即“与”、“或”、“非”这样的基本逻辑运算以及数据的比较、移位等操作。 
+
+存储器：
+主要功能是存储程序和各种数据信息，并能在计算机运行过程中高速、自动地完成程序或数据的存取。
+
+控制器：
+整个计算机系统的控制中心，它指挥计算机各部分协调地工作，保证计算机按照预先规定的目标和步骤有条不紊地进行操作及处理。 
+
+输入设备：
+把各种形式的信息，如数字、文字、图像等转换为数字形式的“编码”，即计算机能够识别的用1和0表示的二进制代码(实际上是电信号)，并把它们“输入”（INPUT）到计算机内存储起来。
+
+输出设备：
+把计算机加工处理的结果（仍然是数字形式的编码）变换为人或其它设备所能接收和识别的信息形式如文字、数字、图形、声音、电压等。
+
+
+//声明所需要的数组
+		String[] strings=new String[strs.size()];
+		int i=0;
+		for(String s:strs){
+			strings[i]=s;
+			i++;
+		}
+return strings;
+
+0516
+返回主界面：出栈
+			intent=new Intent(Intent.ACTION_MAIN);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			startActivity(intent);
+			
+			
+
+/**
+	 * 再按一次退出
+	 */
+	private long lastBackTime;
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (System.currentTimeMillis() - lastBackTime < 2000) {
+				finish();
+			}
+			lastBackTime = System.currentTimeMillis();
+			Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+		}
+		return true;
+	}
+	
+
+Handler handler = new Handler();
+handler.postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				startActivity( new Intent(StartActivity.this, MainActivity.class));
+				finish();
+				overridePendingTransition(0, 0);
+			}
+		}, 2000);
+
+
+回到桌面：
+    Intent intent=new Intent();
+		intent.setAction(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		startActivity(intent);
+		
+		
+android_day03_ems
+String gender = radioGroup.getCheckedRadioButtonId()==R.id.radioM ? "m" : "f";
+
+
+循环内需要每次都创建对象：android_day05_xml
+private void loadCities() throws Exception {
+		//PULL解析Cities.xml;
+		XmlPullParser parser=Xml.newPullParser();
+		AssetManager manager=getAssets();
+		InputStream is=manager.open("Cities.xml");
+		parser.setInput(is, "utf-8");
+		int eventType=parser.getEventType();
+		cities=new ArrayList<City>();
+		City city=null;
+		while(eventType!=XmlPullParser.END_DOCUMENT){
+			switch(eventType){
+			case XmlPullParser.START_TAG:
+				String name=parser.getName();
+				if(name.equals("City")){
+					city=new City();
+					city.setId(parser.getAttributeValue(0));
+					city.setName(parser.getAttributeValue(1));
+					city.setPid(parser.getAttributeValue(2));
+					city.setZipCode(parser.getAttributeValue(3));
+					cities.add(city);
+				}
+				break;
+			}
+			//向后继续事件驱动
+			eventType=parser.next();
+		}
+		
+	}
+	
+	
+//上下文菜单
+@Override
+	public void onCreateContextMenu(ContextMenu menu, // 整个菜单对象，用于创建菜单项
+			View v, // 长按的哪一个控件
+			ContextMenuInfo menuInfo // 菜单的操作信息
+	) {
+		// 获取操作的菜单信息
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		// 根据菜单信息中的position获取操作的数据
+		actionPosition = info.position;
+		actionWord = words.get(info.position);
+		// 添加菜单项
+		menu.add(Menu.NONE, MENU_ID_EDIT, 1, "编辑 (" + actionWord.getEn() + ")");
+		menu.add(Menu.NONE, MENU_ID_DELETE, 1, "删除 (" + actionWord.getEn()
+				+ ")");
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
+getFileDir() ---------> /data/data/cn.xxx.xxx(当前包)/files
+getCacheDir() ---------> /data/data/cn.xxx.xxx(当前包)/cache
+
+
+
+获得当前系统的属性
+Properties property=System.getProperties();
+property.list(System.out);
+
+分享文本到：
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				shareText("当前时间的毫秒值："+System.currentTimeMillis());
+			}
+		});
+	}
+	private void shareText(String string){
+		Intent intent=new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_TEXT, string);
+		startActivity(Intent.createChooser(intent,"分享到..."));
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
+
+
+点击界面，下层的无响应
+rlPlayMusic.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				return true;
+			}
+		});
+		
+把图片保存到内存缓存：
+public Bitmap loadBitmap(String path){
+		try{
+			InputStream is=HttpUtils.get(path);
+			Bitmap b=BitmapUtils.loadBitmap(is,50,50);
+			//下载成功 把b存入内存缓存中
+			String filename=path.substring(path.lastIndexOf("/")+1);
+			//f --> /data/data/cn.tedu.music/xxxx.jpg
+			File f=new File(context.getCacheDir(),filename);
+			BitmapUtils.save(b, f.getAbsolutePath());
+			return b;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public static void save(Bitmap bitmap,String path) throws IOException{
+		File file=new File(path);
+		if(!file.getParentFile().exists()){
+			file.getParentFile().mkdirs();
+		}
+		FileOutputStream os=new FileOutputStream(file);
+		bitmap.compress(CompressFormat.JPEG, 100, os);
+	}
+	
+基本压缩图片：
+/**
+	 * @param is  数据源
+	 * @param width  图片的目标宽度 
+	 * @param height  图片的目标高度
+	 * @return 压缩过后的图片
+	 */
+	public static Bitmap  loadBitmap(InputStream is, int width, int height)throws IOException{
+		//通过is 读取 到一个 byte[]
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		byte[] buffer=new byte[1024];
+		int length=0;
+		while( (length=is.read(buffer)) != -1){
+			bos.write(buffer, 0, length);
+			bos.flush();
+		}
+		byte[] bytes=bos.toByteArray();
+		//使用BitmapFactory获取图片的原始宽和高
+		Options opts = new Options();
+		//仅仅加载图片的边界属性 
+		opts.inJustDecodeBounds = true;
+		BitmapFactory.decodeByteArray(bytes, 0, bytes.length, opts);
+		//通过目标宽和高计算图片的压缩比例
+		int w = opts.outWidth / width;
+		int h = opts.outHeight / height;
+		int scale = w > h ? h : w;
+		//给Options属性设置压缩比例
+		opts.inJustDecodeBounds = false;
+		opts.inSampleSize = scale;
+		//重新解析byte[] 获取Bitmap
+		return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, opts);
+	}
+
+图片模糊处理：
+	/**
+	 * 异步在工作线程中执行图片模糊化处理
+	 * 
+	 * @param bitmap
+	 * @param r
+	 * @param callback
+	 */
+	public static void loadBluredBitmap(final Bitmap bitmap, final int r,
+			final BitmapCallback callback) {
+		new AsyncTask<String, String, Bitmap>() {
+			protected Bitmap doInBackground(String... params) {
+				Bitmap b = createBlurBitmap(bitmap, r);
+				return b;
+			}
+
+			protected void onPostExecute(Bitmap b) {
+				callback.onBitmapLoaded(b);
+			}
+		}.execute();
+	}
+
+	/**
+	 * 传递bitmap 传递模糊半径 返回一个被模糊的bitmap
+	 * 
+	 * @param sentBitmap
+	 * @param radius
+	 * @return
+	 */
+	public static Bitmap createBlurBitmap(Bitmap sentBitmap, int radius) {
+		Bitmap bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
+		if (radius < 1) {
+			return (null);
+		}
+		int w = bitmap.getWidth();
+		int h = bitmap.getHeight();
+		int[] pix = new int[w * h];
+		bitmap.getPixels(pix, 0, w, 0, 0, w, h);
+		int wm = w - 1;
+		int hm = h - 1;
+		int wh = w * h;
+		int div = radius + radius + 1;
+		int r[] = new int[wh];
+		int g[] = new int[wh];
+		int b[] = new int[wh];
+		int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
+		int vmin[] = new int[Math.max(w, h)];
+		int divsum = (div + 1) >> 1;
+		divsum *= divsum;
+		int dv[] = new int[256 * divsum];
+		for (i = 0; i < 256 * divsum; i++) {
+			dv[i] = (i / divsum);
+
+		}
+		yw = yi = 0;
+		int[][] stack = new int[div][3];
+		int stackpointer;
+		int stackstart;
+		int[] sir;
+		int rbs;
+		int r1 = radius + 1;
+		int routsum, goutsum, boutsum;
+		int rinsum, ginsum, binsum;
+		for (y = 0; y < h; y++) {
+			rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
+			for (i = -radius; i <= radius; i++) {
+				p = pix[yi + Math.min(wm, Math.max(i, 0))];
+				sir = stack[i + radius];
+				sir[0] = (p & 0xff0000) >> 16;
+				sir[1] = (p & 0x00ff00) >> 8;
+				sir[2] = (p & 0x0000ff);
+				rbs = r1 - Math.abs(i);
+				rsum += sir[0] * rbs;
+				gsum += sir[1] * rbs;
+				bsum += sir[2] * rbs;
+				if (i > 0) {
+					rinsum += sir[0];
+					ginsum += sir[1];
+					binsum += sir[2];
+
+				} else {
+					routsum += sir[0];
+					goutsum += sir[1];
+					boutsum += sir[2];
+
+				}
+
+			}
+			stackpointer = radius;
+			for (x = 0; x < w; x++) {
+				r[yi] = dv[rsum];
+				g[yi] = dv[gsum];
+				b[yi] = dv[bsum];
+				rsum -= routsum;
+				gsum -= goutsum;
+				bsum -= boutsum;
+				stackstart = stackpointer - radius + div;
+				sir = stack[stackstart % div];
+				routsum -= sir[0];
+				goutsum -= sir[1];
+				boutsum -= sir[2];
+				if (y == 0) {
+					vmin[x] = Math.min(x + radius + 1, wm);
+
+				}
+				p = pix[yw + vmin[x]];
+				sir[0] = (p & 0xff0000) >> 16;
+				sir[1] = (p & 0x00ff00) >> 8;
+				sir[2] = (p & 0x0000ff);
+				rinsum += sir[0];
+				ginsum += sir[1];
+				binsum += sir[2];
+				rsum += rinsum;
+				gsum += ginsum;
+				bsum += binsum;
+				stackpointer = (stackpointer + 1) % div;
+				sir = stack[(stackpointer) % div];
+				routsum += sir[0];
+				goutsum += sir[1];
+				boutsum += sir[2];
+				rinsum -= sir[0];
+				ginsum -= sir[1];
+				binsum -= sir[2];
+				yi++;
+
+			}
+			yw += w;
+
+		}
+		for (x = 0; x < w; x++) {
+			rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
+			yp = -radius * w;
+			for (i = -radius; i <= radius; i++) {
+				yi = Math.max(0, yp) + x;
+				sir = stack[i + radius];
+				sir[0] = r[yi];
+				sir[1] = g[yi];
+				sir[2] = b[yi];
+				rbs = r1 - Math.abs(i);
+				rsum += r[yi] * rbs;
+				gsum += g[yi] * rbs;
+				bsum += b[yi] * rbs;
+				if (i > 0) {
+					rinsum += sir[0];
+					ginsum += sir[1];
+					binsum += sir[2];
+
+				} else {
+					routsum += sir[0];
+					goutsum += sir[1];
+					boutsum += sir[2];
+
+				}
+				if (i < hm) {
+					yp += w;
+				}
+			}
+			yi = x;
+			stackpointer = radius;
+			for (y = 0; y < h; y++) {
+				pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16)
+						| (dv[gsum] << 8) | dv[bsum];
+				rsum -= routsum;
+				gsum -= goutsum;
+				bsum -= boutsum;
+				stackstart = stackpointer - radius + div;
+				sir = stack[stackstart % div];
+				routsum -= sir[0];
+				goutsum -= sir[1];
+				boutsum -= sir[2];
+				if (x == 0) {
+					vmin[y] = Math.min(y + r1, hm) * w;
+
+				}
+				p = x + vmin[y];
+				sir[0] = r[p];
+				sir[1] = g[p];
+				sir[2] = b[p];
+				rinsum += sir[0];
+				ginsum += sir[1];
+				binsum += sir[2];
+				rsum += rinsum;
+				gsum += ginsum;
+				bsum += binsum;
+				stackpointer = (stackpointer + 1) % div;
+				sir = stack[stackpointer];
+				routsum += sir[0];
+				goutsum += sir[1];
+				boutsum += sir[2];
+				rinsum -= sir[0];
+				ginsum -= sir[1];
+				binsum -= sir[2];
+				yi += w;
+
+			}
+
+		}
+		bitmap.setPixels(pix, 0, w, 0, 0, w, h);
+		return (bitmap);
+	}
+
+
+
+分享apk文件：
+我们接着实现点击item分享Apk文件：
+
+ private class ItemClickListenerImpl implements AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            File apkFile = mAppInfoList.get(position).getApkFile();
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("*/*");
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(apkFile));
+            startActivity(intent);
+        }
+    }
+分享照片代码参考：
+public void SharePhoto(String photoUri,final Activity activity) { 
+    Intent shareIntent = new Intent(Intent.ACTION_SEND); 
+    File file = new File(photoUri); 
+    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file)); 
+    shareIntent.setType("image/jpeg"); 
+    StartActivity(Intent.createChooser(shareIntent, activity.getTitle())); 
+}
+
+
+图片缓存：
+	public MusicAdapter(Context context,List<Music> musics){
+		this.context=context;
+		this.musics=musics;
+		RequestQueue queue=Volley.newRequestQueue(context);
+		imageLoader=new ImageLoader(queue, new LruImageCache());
+	}
+	
+	//图片缓存：摘自网上
+	class LruImageCache implements ImageCache{
+		private LruCache<String, Bitmap> mCache;
+		public LruImageCache(){
+			int maxSize=10*1024*1024;
+			mCache=new LruCache<String, Bitmap>(maxSize){
+				@Override
+				protected int sizeOf(String key, Bitmap bitmap) {
+					
+					return bitmap.getRowBytes()*bitmap.getHeight();
+				}
+			};
+		}
+		@Override
+		public Bitmap getBitmap(String url) {
+			// TODO Auto-generated method stub
+			return mCache.get(url);
+		}
+
+		@Override
+		public void putBitmap(String url, Bitmap bitmap) {
+			mCache.put(url, bitmap);
+		}
+		
+	}
+	
+联网提示：
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+/**
+ * Created by mixinan on 2016/6/4.
+ */
+public class NetUtil {
+
+    public static boolean haveNet(Context context) {
+        ConnectivityManager cm = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (cm == null) {
+            return false;
+        }
+
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null || !ni.isAvailable()) {
+            return false;
+        }
+        return true;
+    }
+}
+
+public void onUpRefresh(){
+		if(!NetUtil.haveNet(this)){
+			return;
+		}else{
+				if("去南京路上".equals(blogs.get(blogs.size()-1).getTitle())){
+						ToastUtil.showToast(this,"数据已经加载完毕");
+						return;
+				}
+				refreshing();
+				currentPage++;
+				initData(currentPage);
+		}
+}
+
+
+
+
+
+点击一个按钮推出
+Intent exit=new Intent(Intent.ACTION_MAIN);
+exit.addCategory(Intent.CATEGORY_HOME);
+exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(exit);
+System.exit(0);
+
+//获取radiogroup里点击的raidobutton
+((RadioButton)radioGroup.getChildAt(arg0)).setChecked(true)
+
+//复制到剪贴板
+public static copyToClipboard(Context context,String url){
+		ClipboardManager cm=(ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+		
+		cm.setPrimaryClip(ClipData.newPlainText("url",url));
+		ToastUtil.showToast(context,"已经复制到剪贴板");
+}
+
+
+
+
+手机号码中间的4位用*代替
+
+edit2.setText(str.replace(str.substring(3, 6), "****"));
+
+11位手机号码
+"[0-9]{11}"
+
+
+SharedPreferences 基本用法：
+String name = "user-config"; // 文件名称，不需要扩展名
+		int mode = MODE_PRIVATE; // 访问模式
+		SharedPreferences sp = getSharedPreferences(name, mode);
+		Editor editor = sp.edit();
+		editor.putString("_username", username);
+		editor.putString("_email", email);
+		editor.putInt("_age", age);
+		editor.putString("_gender", gender);
+		editor.commit(); // 提交保存
+		
+		
+get请求基本用法：
+//发送请求获取xml字符串
+	private void findAllFlightsByGet() throws IOException {
+		//1.  URL
+		URL url = new URL("http://172.60.50.93:8888/android_day02_jsp/findFlights.jsp");
+		//2.  HttpUrlConnection
+		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+		//3.  GET
+		conn.setRequestMethod("GET");
+		//4.  getInputStream
+		InputStream is = conn.getInputStream();
+		//5. 解析
+		BufferedReader reader = new BufferedReader(
+				new InputStreamReader(is, "utf-8"));
+		StringBuilder sb = new StringBuilder();
+		String line="";
+		while((line=reader.readLine())!=null){
+			sb.append(line);
+		}
+		//获取响应文本
+		String respText=sb.toString();
+		Log.i("info", "respText:"+respText);
+	}
+	
+post请求基本用法：
+private void addEmp() throws IOException, JSONException{
+		//1. URL
+		URL url = new URL("http://172.60.50.93:8080/ems/addEmp");
+		//2. HttpUrlConnection
+		HttpURLConnection conn=(HttpURLConnection) url.openConnection();
+		//3. POST
+		conn.setRequestMethod("POST");
+		//4. 属性
+		conn.setDoOutput(true);
+		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		//5. 设置参数  output
+		OutputStream os = conn.getOutputStream();
+		String name = etName.getText().toString();
+		String salary = etSalary.getText().toString();
+		String age = etAge.getText().toString();
+		String gender = radioGroup.getCheckedRadioButtonId()==R.id.radioM ? "m" : "f";
+		String params = "name="+name+"&salary="+salary+"&age="+age+"&gender="+gender;
+		os.write(params.getBytes("utf-8"));
+		os.flush();
+		//6.  JSON
+		InputStream is = conn.getInputStream();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+		String line = "";
+		while((line = reader.readLine()) != null){
+			sb.append(line);
+		}
+		String jsonText = sb.toString();
+		//7. 解析
+		//jsonText :  {result:ok}  {result:error, msg:xxx}
+		JSONObject obj = new JSONObject(jsonText);
+		String res=obj.getString("result");
+		if("ok".equals(res)){  //请求成功
+			handler.sendEmptyMessage(HANDLER_ADD_EMP_SUCCESS);
+		}else{ //请求失败
+			Message msg = new Message();
+			msg.what = HANDLER_ADD_EMP_FAIL;
+			msg.obj = obj.getString("msg");
+			handler.sendMessage(msg );
+		}
+	}
+	
+	
+listView的动画显示：
+LayoutAnimationController c=new LayoutAnimationController(
+		AnimationUtils.loadAnimation(getActivity(),R.anim.anim_item_blog)
+);
+c.setDelay(0.3f);
+
+c.setOrder(LayoutAnimationController.ORDER_NORMAL);
+
+listView.setLayoutAnimation(c);
+
+<?  android:fillAfter="true">
+<translate
+ 		android:duration="308"
+ 		android:fromXDelta="0"
+ 		
+ 		android:fromYDelta="-100%"
+ 		android:toXDelta="0"
+ 		android:toYDelta="0"/>
+ 		
+ 		<alpha
+ 				android:duration="238"
+ 				android:fromAlpha="0.1"
+ 				android:toAlpha="1"/>
+ 				
+<set>
+
+当我们使用ListView或GridView的时候，当列表为空的时候，我们需要一个特殊的View来提示用户操作，于是就有了setEmptyView()
+ListView.setEmptyView(view)
+
+
+
+
+
+
+
+
+
+可以通过下面的代码看出每个应用程序最高可用内存是多少。
+int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);  
+Log.d("TAG", "Max memory is " + maxMemory + "KB"); 
+
+
+在代码中将布局文件中设置的尺寸转换成px;
+public class DisplayUtil {
+	public static int  dp2px(Context context,float dp){
+		Resources resources=context.getResources();
+		DisplayMetrics displayMetrics=resources.getDisplayMetrics();
+		float density=displayMetrics.scaledDensity;
+		int px=(int) (density*dp+0.5);
+		return px;				
+	}
+}
+
+
+Android IMEI获得方法
+
+TelephonyManager telephonyManager= (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+String imei=telephonyManager.getDeviceId();
+
+需要在manifest中加入 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
