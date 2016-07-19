@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">android_0616_viewpager</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_fragment_ming_yan">FragmentMingYan</string>
+    <string name="title_activity_fragment_cheng_yu">FragmentChengYu</string>
+    <string name="title_activity_first">成语</string>
+
+</resources>
